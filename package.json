@@ -1,0 +1,24 @@
+{
+  "name": "proiect-2-alexandrugeorgianbahnaru1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "proiect-2-AlexandruGeorgianBahnaru1"
+  },
+  "keywords": [
+    "COSMETICE"
+  ],
+  "author": "George",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1"
+  }
+}
