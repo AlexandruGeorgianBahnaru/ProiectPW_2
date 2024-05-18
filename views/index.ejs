@@ -1,1 +1,14 @@
-<div>AASDSADASD</div>
+
+<div id="Autentificare"><strong>Bine ai venit</strong></div></br>
+<button id="spreAutentificare" onclick="window.location.href='/autentificare'">Autentificare</button>
+<button id  ="chestionar" >Chestionar</button>
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const message = urlParams.get('message');
+
+    if (message) {
+        alert(message);
+        window.location.href = '/chestionar';
+    }
+</script>

@@ -1,3 +1,5 @@
+
+
 function verificareUser()
 {
     const user = document.getElementById('User');
@@ -8,6 +10,7 @@ function verificareUser()
         console.log("ADEV");
 }
 
+var autentificat = false;
 
 
 const express = require('express');
@@ -15,10 +18,12 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser')
 const app = express();
 const port = 6789;
+const path = require('path');
+const fs = require('fs/promises');
 // directorul 'views' va conține fișierele .ejs (html + js executat la server)
 app.set('view engine', 'ejs');
 // suport pentru layout-uri - implicit fișierul care reprezintă template-ul site-ului
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
 
 app.use(express.static('public'))
@@ -31,64 +36,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // proprietățile obiectului Request - req - https://expressjs.com/en/api.html#req
 // proprietățile obiectului Response - res - https://expressjs.com/en/api.html#res
 app.get('/', function(req, res) {
-    res.render('index');
+    autentificat = false;
+    res.render('index', {autentificat});
   });
 
 
 // la accesarea din browser adresei http://localhost:6789/chestionar se va apela funcția
-app.get('/chestionar', (req, res) => {
- const listaIntrebari = [
-    {
-        intrebare: 'Cat de des faceti cumparaturi din industria frumusetii si ingrijirii?',
-        variante: ['O data pe saptamana', 'O data pe luna', 'Deloc', 'Cand am nevoie'],
-        corect: 0
-    },
-    {
-        intrebare: 'Ati auzit despre produsele cosmetice coreene?',
-        variante: ['Da', 'Nu sunt sigur', 'Nu', 'Nu ma intereseaza'],
-        corect: 0
-    },
-    {
-        intrebare: 'Ati procurat cel putin o data produse cosmetice coreene?',
-        variante: ['Da', 'Nu sunt sigur', 'Nu', 'Nu ma intereseaza'],
-        corect: 0
-    },
-    {
-        intrebare: 'Ce produse cosmetice de ingrijire ati folosit?',
-        variante: ['Gel de dus', 'Sampon antimatreata', 'Crema antirid', 'Crema de maini'],
-        corect: 0
-    },
-    {
-        intrebare: 'Ce marca de crema antirid ati folosit?',
-        variante: ['Farmec', 'Avon', 'Nivea', 'Nu am folosit'],
-        corect: 0
-    },
-    {
-        intrebare: 'Din ce surse ati auzit de Farmec?',
-        variante: ['Internet', 'Prieteni', 'Televizor', 'Nu am auzit'],
-        corect: 0
-    },
-    {
-        intrebare: 'Care este opinia dvs despre Farmec?',
-        variante: ['Nesatisfacatoare', 'Buna', 'Satisfacatoare', 'Nu am o opinie'],
-        corect: 0
-    },
-    {
-        intrebare: 'Ce moment al zilei vi sa pare mai potrivi pentru aplicarea cremei UV?',
-        variante: ['Dimineata', 'Seara', 'La pranz', 'Inainte de a iesi din casa'],
-        corect: 0
-    },
-    
-    {
-        intrebare: 'Cat de des folositi crema de maini?',
-        variante: ['In fiecare zi', 'Nu folosesc', 'O data pe saptamana', 'O data pe luna'],
-        corect: 0
-    },
- //...
- ];
- // în fișierul views/chestionar.ejs este accesibilă variabila 'intrebari' care
-
- res.render('chestionar', {intrebari: listaIntrebari});
+app.get('/chestionar', async (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'intrebari.json');
+        const data = await fs.readFile(filePath, 'utf8');
+        const listaIntrebari = JSON.parse(data);
+        res.render('chestionar', { intrebari: listaIntrebari });
+    } catch (err) {
+        console.error('Error reading questions file:', err);
+        res.status(500).send('Server Error');
+    }
 });
 //verificare user manual
 const users = [
@@ -100,7 +63,7 @@ app.get('/autentificare', function(req, res) {
     res.render('autentificare');
   });
 
-  app.post('/verificare-autentificare', (req, res) => {
+app.post('/verificare-autentificare', (req, res) => {
     const { username, password } = req.body;
     console.log(req.body);
     // Check if username and password are provided
@@ -121,7 +84,14 @@ app.get('/autentificare', function(req, res) {
     }
 
     // Authentication successful
-    res.send('Authentication successful!');// You can redirect or send a token here for further authentication
+    const autentificat = true; // Replace with actual authentication logic
+
+    if (autentificat) {
+        res.redirect('/?message=Autentificare reușită');
+    } else {
+        res.redirect('/?message=Nu sunteti autentificat');
+    }
+    
 });
 
 app.post('/rezultat-chestionar', (req, res) => {

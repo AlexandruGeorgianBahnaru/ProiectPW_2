@@ -1,0 +1,47 @@
+[
+    {
+        "intrebare": "Cat de des faceti cumparaturi din industria frumusetii si ingrijirii?",
+        "variante": ["O data pe saptamana", "O data pe luna", "Deloc", "Cand am nevoie"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Ati auzit despre produsele cosmetice coreene?",
+        "variante": ["Da", "Nu sunt sigur", "Nu", "Nu ma intereseaza"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Ati procurat cel putin o data produse cosmetice coreene?",
+        "variante": ["Da", "Nu sunt sigur", "Nu", "Nu ma intereseaza"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Ce produse cosmetice de ingrijire ati folosit?",
+        "variante": ["Gel de dus", "Sampon antimatreata", "Crema antirid", "Crema de maini"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Ce marca de crema antirid ati folosit?",
+        "variante": ["Farmec", "Avon", "Nivea", "Nu am folosit"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Din ce surse ati auzit de Farmec?",
+        "variante": ["Internet", "Prieteni", "Televizor", "Nu am auzit"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Care este opinia dvs despre Farmec?",
+        "variante": ["Nesatisfacatoare", "Buna", "Satisfacatoare", "Nu am o opinie"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Ce moment al zilei vi se pare mai potrivit pentru aplicarea cremei UV?",
+        "variante": ["Dimineata", "Seara", "La pranz", "Inainte de a iesi din casa"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Cat de des folositi crema de maini?",
+        "variante": ["In fiecare zi", "Nu folosesc", "O data pe saptamana", "O data pe luna"],
+        "corect": 0
+    }
+]
