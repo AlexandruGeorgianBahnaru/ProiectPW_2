@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezultatul Chestionarului</title>
+</head>
+<body>
+    <h1>Rezultatul Chestionarului</h1>
+    <p>Multumim pentru completarea chestionarului!</p>
+    <button id="home">Pagina principala</a>
+        <script>
+            
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const messag = urlParams.get('message');
+            document.getElementById('home').addEventListener('click', function() {
+                window.location.href = `/?message=${messag},chest`;
+            });
+        </script>
+</body>
+</html>

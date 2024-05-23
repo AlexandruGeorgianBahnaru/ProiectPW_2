@@ -1,47 +1,52 @@
 [
     {
-        "intrebare": "Cat de des faceti cumparaturi din industria frumusetii si ingrijirii?",
-        "variante": ["O data pe saptamana", "O data pe luna", "Deloc", "Cand am nevoie"],
+        "intrebare": "Care dintre următoarele ingrediente este cunoscut pentru proprietățile sale hidratante în produsele cosmetice?",
+        "variante": ["Glicerina", "Clorură de sodiu", "Etanol", "Acid citric"],
         "corect": 0
     },
     {
-        "intrebare": "Ati auzit despre produsele cosmetice coreene?",
-        "variante": ["Da", "Nu sunt sigur", "Nu", "Nu ma intereseaza"],
+        "intrebare": "Ce factor de protecție solară (SPF) este recomandat pentru utilizarea zilnică pentru a proteja pielea de radiațiile UV?",
+        "variante": ["SPF 15", "SPF 5", "SPF 50", "SPF 2"],
         "corect": 0
     },
     {
-        "intrebare": "Ati procurat cel putin o data produse cosmetice coreene?",
-        "variante": ["Da", "Nu sunt sigur", "Nu", "Nu ma intereseaza"],
+        "intrebare": "Ce ingredient activ din cremele antirid este cunoscut pentru reducerea ridurilor fine?",
+        "variante": ["Retinol", "Sulfat de sodiu", "Peroxid de benzoil", "Acid salicilic"],
         "corect": 0
     },
     {
-        "intrebare": "Ce produse cosmetice de ingrijire ati folosit?",
-        "variante": ["Gel de dus", "Sampon antimatreata", "Crema antirid", "Crema de maini"],
+        "intrebare": "Ce tip de produs cosmetic este utilizat pentru a îndepărta machiajul?",
+        "variante": ["Demachiant", "Fond de ten", "Creion de ochi", "Mascara"],
         "corect": 0
     },
     {
-        "intrebare": "Ce marca de crema antirid ati folosit?",
-        "variante": ["Farmec", "Avon", "Nivea", "Nu am folosit"],
+        "intrebare": "Care este pH-ul optim pentru produsele cosmetice destinate curățării feței?",
+        "variante": ["pH 5.5", "pH 8.0", "pH 3.0", "pH 11.0"],
         "corect": 0
     },
     {
-        "intrebare": "Din ce surse ati auzit de Farmec?",
-        "variante": ["Internet", "Prieteni", "Televizor", "Nu am auzit"],
+        "intrebare": "Ce tip de acid este frecvent utilizat în exfoliantele chimice pentru piele?",
+        "variante": ["Acid glicolic", "Acid boric", "Acid clorhidric", "Acid acetic"],
         "corect": 0
     },
     {
-        "intrebare": "Care este opinia dvs despre Farmec?",
-        "variante": ["Nesatisfacatoare", "Buna", "Satisfacatoare", "Nu am o opinie"],
+        "intrebare": "Ce ingredient din șampoane este utilizat pentru a combate mătreața?",
+        "variante": ["Piritionă de zinc", "Sulfat de sodiu", "Ulei de ricin", "Parafină"],
         "corect": 0
     },
     {
-        "intrebare": "Ce moment al zilei vi se pare mai potrivit pentru aplicarea cremei UV?",
-        "variante": ["Dimineata", "Seara", "La pranz", "Inainte de a iesi din casa"],
+        "intrebare": "Ce beneficiu principal are utilizarea acidului hialuronic în produsele de îngrijire a pielii?",
+        "variante": ["Hidratare", "Exfoliere", "Albire", "Îngroșare"],
         "corect": 0
     },
     {
-        "intrebare": "Cat de des folositi crema de maini?",
-        "variante": ["In fiecare zi", "Nu folosesc", "O data pe saptamana", "O data pe luna"],
+        "intrebare": "Ce tip de produs cosmetic este recomandat pentru protejarea pielii împotriva poluării și particulelor de praf?",
+        "variante": ["Cremă cu antioxidanți", "Scrub abraziv", "Șampon uscat", "Fard de obraz"],
+        "corect": 0
+    },
+    {
+        "intrebare": "Care dintre următoarele este un beneficiu al utilizării vitaminelor C și E în produsele de îngrijire a pielii?",
+        "variante": ["Antioxidant", "Colorant", "Conservant", "Parfum"],
         "corect": 0
     }
 ]

@@ -1,5 +1,4 @@
 
-
 function verificareUser()
 {
     const user = document.getElementById('User');
@@ -11,20 +10,27 @@ function verificareUser()
 }
 
 var autentificat = false;
-
-
+var userAutentificat;
+var nrIncercari = 0;
+var messIncercari = null;
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const sqlite3 = require('sqlite3').verbose();
+
 const app = express();
 const port = 6789;
 const path = require('path');
 const fs = require('fs/promises');
+const { TIMEOUT } = require('dns');
 // directorul 'views' va conține fișierele .ejs (html + js executat la server)
 app.set('view engine', 'ejs');
 // suport pentru layout-uri - implicit fișierul care reprezintă template-ul site-ului
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
+app.use(cookieParser());
 
 app.use(express.static('public'))
 // corpul mesajului poate fi interpretat ca json; datele de la formular se găsesc în
@@ -33,11 +39,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // la accesarea din browser adresei http://localhost:6789/ se va returna textul 'Hello
 
+app.use(session({
+    secret: 'secret', // Schimbați cu o cheie secretă reală
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } 
+  }));
+
 // proprietățile obiectului Request - req - https://expressjs.com/en/api.html#req
 // proprietățile obiectului Response - res - https://expressjs.com/en/api.html#res
 app.get('/', function(req, res) {
-    autentificat = false;
-    res.render('index', {autentificat});
+    const userSession = req.session.user;
+  res.render('index', { user: userSession });
   });
 
 
@@ -54,50 +67,57 @@ app.get('/chestionar', async (req, res) => {
     }
 });
 //verificare user manual
-const users = [
-    { username: 'user1', password: 'password1' },
-    { username: 'user2', password: 'password2' }
-];
 
 app.get('/autentificare', function(req, res) {
     res.render('autentificare');
   });
 
-app.post('/verificare-autentificare', (req, res) => {
+app.post('/verificare-autentificare', async (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
-    // Check if username and password are provided
+    try{
+        const filePath = path.join(__dirname, 'utilizatori.json');
+        const data = await fs.readFile(filePath, 'utf8');
+        const users = JSON.parse(data);
     if (!username || !password) {
-        return res.status(400).send('Username and password are required.');
+        res.cookie('errorMessage', 'Username and password are required.', { maxAge: 3000 });
+        return res.redirect('/autentificare');
     }
 
-    // Find user by username
-    console.log(users);
     const user = users.find(user => user.username === username);
-    if (!user) {
-        return res.status(401).send('User not found.');
+
+    if (!user || user.password !== password) {
+        res.cookie('errorMessage', 'Incorrect username or password.', { maxAge: 3000 });
+        return res.redirect('/autentificare');
     }
 
-    // Check if password matches
-    if (user.password !== password) {
-        return res.status(401).send('Incorrect password.');
+    autentificat = true;
+    userAutentificat = username;
+    res.cookie('username', username);
+    res.redirect(`/?message=${username}`);
     }
-
-    // Authentication successful
-    const autentificat = true; // Replace with actual authentication logic
-
-    if (autentificat) {
-        res.redirect('/?message=Autentificare reușită');
-    } else {
-        res.redirect('/?message=Nu sunteti autentificat');
+    catch(err){
+        console.error('Error reading questions file:', err);
+        res.status(500).send('Server Error');
     }
-    
 });
 
-app.post('/rezultat-chestionar', (req, res) => {
- console.log(req.body);
- res.send("formular: " + JSON.stringify(req.body));
+app.post('/logout', (req, res) => {
+    req.session.destroy(err => {
+      if (err) {
+        return res.redirect('/');
+      }
+      res.clearCookie('connect.sid');
+      res.redirect('/');
+    });
+  });
+
+app.post('/rezultat-chestionar', async (req, res) => {
+    res.redirect(`/rezultat-chestionar?message=${userAutentificat}`);
 });
+
+app.get('/rezultat-chestionar', function(req, res) {
+    res.render('rezultat-chestionar');
+  });
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`));
 

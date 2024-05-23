@@ -1,4 +1,4 @@
-<body>
+<form action="/rezultat-chestionar" method="post">
     <% intrebari.forEach(function(intrebare, index) { %>
         <div id="intrebare<%= index + 1 %>"> <%= intrebare.intrebare %> </div><br/>
         <% intrebare.variante.forEach(function(varianta, vIndex) { %>
@@ -7,5 +7,5 @@
         <% }); %></br>
     <% }); %>
 
-    <button id  ="submit" >Submit   </button>
-</body>
+    <button type="submit">Submit </button>
+</form>

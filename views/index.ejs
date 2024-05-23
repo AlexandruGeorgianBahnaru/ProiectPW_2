@@ -1,14 +1,44 @@
 
 <div id="Autentificare"><strong>Bine ai venit</strong></div></br>
-<button id="spreAutentificare" onclick="window.location.href='/autentificare'">Autentificare</button>
-<button id  ="chestionar" >Chestionar</button>
+<button id="spreAutentificare" onclick="window.location.href='/autentificare'">Autentificare</button></br></br>
+<button id  ="chestionar" disabled = "true" onclick="window.location.href='/chestionar'">Chestionar</button></br></br>
+<form action="/logout" method="post">
+    <button id="logout"  type="submit" disabled>Logout</button>
+</form></br></br>
+<button id="creareBD" onclick="window.location.href='/creare-bd'">Creare BD</button></br></br>
+<button id="incarcareBD" onclick="window.location.href='/inserarebd'">Încarcare BD</button>
 <script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const message = urlParams.get('message');
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const message = urlParams.get('message');
+            
 
-    if (message) {
-        alert(message);
-        window.location.href = '/chestionar';
-    }
-</script>
+            if (message !== "Autentificare nereușită" && message !== null) {
+                var buttonChest = document.getElementById('chestionar');
+                var buttonAuten = document.getElementById('spreAutentificare');
+                var buttonLogout = document.getElementById('logout');
+                var div = document.getElementById('Autentificare');
+                
+                var commaIndex = message.indexOf(',');
+                var displayMessage = commaIndex !== -1 ? message.substring(0, commaIndex) : message;
+                div.innerHTML += ` ${displayMessage}!`; // Actualizăm conținutul div-ului
+                if(message.endsWith("chest"))
+                    buttonChest.disabled = true;
+                else
+                    buttonChest.disabled = false;
+                buttonLogout.disabled = false;
+                buttonAuten.disabled = true;
+                alert(message);
+            }
+            // Event listener pentru butonul de logout
+            document.getElementById('logout').addEventListener('click', function() {
+                var buttonChest = document.getElementById('chestionar');
+                var buttonAuten = document.getElementById('spreAutentificare');
+                var buttonLogout = document.getElementById('logout');
+                div.innerHTML = "Bine ai venit";
+                buttonChest.disabled = true;
+                buttonLogout.disabled = true;
+                buttonAuten.disabled = false;
+            });
+
+    </script>
