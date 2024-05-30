@@ -1,8 +1,10 @@
 [{ 
     "username": "test",
-    "password": "test"
+    "password": "test",
+    "role": "user"
 },
 {
     "username": "admin",
-    "password": "admin"
+    "password": "admin",
+    "role": "admin"
 }]

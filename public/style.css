@@ -44,3 +44,21 @@ h1 {
 html, body, head{
   background-image: url('../download.jpg');
 }
+
+ul{
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0 auto; 
+  text-align: center; 
+  max-width: 300px;
+}
+
+li{
+  margin: 10px 0;
+}
+
+h2{
+  text-align: center; 
+    max-width: 300px; 
+    margin: 0 auto;
+}

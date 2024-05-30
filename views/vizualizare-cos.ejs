@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vizualizare Coș</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <h1>Produsele din coș</h1>
+    <ul>
+        <% if (cartProducts.length === 0) { %>
+            <li>Coșul este gol.</li>
+        <% } else { %>
+            <% cartProducts.forEach(product => { %>
+                <li>
+                    <%= product.name %> - $<%= product.price %>
+                </li>
+            <% }) %>
+        <% } %>
+    </ul>
+    <button onclick="window.location.href='/'">Înapoi la magazin</button>
+</body>
+</html>
